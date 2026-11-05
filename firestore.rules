@@ -1,0 +1,64 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if caller is the portfolio administrator
+    function isAdmin() {
+      return request.auth != null && 
+        (request.auth.token.email == 'santhoshsam2129@gmail.com' || 
+         request.auth.token.email == 'aidssanthosh@gmail.com');
+    }
+
+    // Portfolio content collections (personal info, projects, skills, education, experience, achievements, certs)
+    // Public read-only for web visitors; write restricted to authenticated admin
+    match /portfolio/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    match /projects/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /skills/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /education/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /experience/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /achievements/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /certifications/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Contact form submissions:
+    // Anyone can create a message (with valid fields and anti-spam size limits)
+    // Only the administrator can read, mark as read, or delete messages
+    match /contact_messages/{messageId} {
+      allow create: if request.resource.data.name is string &&
+                       request.resource.data.email is string &&
+                       request.resource.data.message is string &&
+                       request.resource.data.name.size() > 1 &&
+                       request.resource.data.name.size() < 100 &&
+                       request.resource.data.email.size() < 120 &&
+                       request.resource.data.message.size() > 5 &&
+                       request.resource.data.message.size() < 3000;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

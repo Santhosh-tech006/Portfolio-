@@ -1,0 +1,27 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    function isAdmin() {
+      return request.auth != null && 
+        (request.auth.token.email == 'santhoshsam2129@gmail.com' ||
+         request.auth.token.email == 'aidssanthosh@gmail.com');
+    }
+
+    // Portfolio assets: resume PDFs, project screenshots, certificates, profile images
+    // Public read-only for all visitors; write restricted to authenticated admin
+    match /portfolio/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && 
+                      request.resource.size < 15 * 1024 * 1024 && // max 15MB
+                      (request.resource.contentType.matches('image/.*') || 
+                       request.resource.contentType == 'application/pdf');
+    }
+
+    // Default rule
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

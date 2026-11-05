@@ -1,0 +1,61 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 500 >>
+stream
+BT
+/F1 22 Tf
+50 730 Td
+(S. SANTHOSH - CURRICULUM VITAE) Tj
+/F1 12 Tf
+0 -30 Td
+(Artificial Intelligence & Data Science Undergraduate) Tj
+0 -18 Td
+(Velalar College of Engineering and Technology, Erode, Tamil Nadu) Tj
+0 -18 Td
+(Email: santhoshsam2129@gmail.com | Phone: +91 9080477928) Tj
+0 -18 Td
+(LinkedIn: linkedin.com/in/santhoshvcet | GitHub: github.com/Santhosh-tech006) Tj
+0 -35 Td
+(ACADEMIC PROFILE) Tj
+0 -18 Td
+(B.Tech AI & DS (2024-2028, 3rd Year) - CGPA: 8.22 up to 4th semester) Tj
+0 -35 Td
+(KEY PROJECTS) Tj
+0 -18 Td
+(1. Brain Tumor Detection System - Dual-module MRI enhancement & classification) Tj
+0 -18 Td
+(2. SportzWeb - Sports Academy Management Studio) Tj
+0 -18 Td
+(3. Checkmate Connect - Intelligent Chess Learning & Analysis Platform) Tj
+0 -35 Td
+(CORE SKILLS) Tj
+0 -18 Td
+(Python, Java, SQL, Machine Learning, Deep Learning, TensorFlow, PyTorch, React, Node.js) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000227 00000 n 
+0000000780 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+850
+%%EOF
