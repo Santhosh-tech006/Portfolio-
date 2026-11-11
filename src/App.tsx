@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
+import { CursorProvider } from './context/CursorContext';
+import { CinematicBackground } from './components/CinematicBackground';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { About } from './components/About';
 import { Education } from './components/Education';
 import { TechnicalSkills } from './components/TechnicalSkills';
 import { FeaturedProjects } from './components/FeaturedProjects';
-import { Achievements } from './components/Achievements';
-import { Certifications } from './components/Certifications';
-import { ResumeSection } from './components/ResumeSection';
+import { Experience } from './components/Experience';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { FloatingBackToTop } from './components/FloatingBackToTop';
 import { AdminDashboard } from './components/AdminDashboard';
 
 const PortfolioContent: React.FC = () => {
@@ -33,17 +33,14 @@ const PortfolioContent: React.FC = () => {
     return () => window.removeEventListener('hashchange', checkAdminTrigger);
   }, []);
 
-  // Intersection Observer for scroll spy
+  // Intersection Observer for exact 6 sections
   useEffect(() => {
     const sectionIds = [
       'home',
-      'about',
       'education',
       'skills',
       'projects',
-      'achievements',
-      'certifications',
-      'resume',
+      'experience',
       'contact',
     ];
 
@@ -67,29 +64,34 @@ const PortfolioContent: React.FC = () => {
   }, [setActiveSection]);
 
   return (
-    <div className="min-h-screen bg-white text-slate-700 selection:bg-blue-100 selection:text-blue-700">
-      {/* Clean Fixed Header */}
-      <Navbar onOpenAdmin={() => setIsAdminOpen(true)} />
+    <CursorProvider>
+      <div className="min-h-screen bg-[#000000] text-[#FFFFFF] selection:bg-blue-600/30 selection:text-cyan-300 relative overflow-x-hidden">
+        {/* Lightweight Cinematic Background Texture: Faint Grid & Sparse Canvas Particles */}
+        <CinematicBackground />
 
-      {/* Main Single-page Content Sections */}
-      <main>
-        <Hero />
-        <About />
-        <Education onOpenAdmin={() => setIsAdminOpen(true)} />
-        <TechnicalSkills onOpenAdmin={() => setIsAdminOpen(true)} />
-        <FeaturedProjects onOpenAdmin={() => setIsAdminOpen(true)} />
-        <Achievements onOpenAdmin={() => setIsAdminOpen(true)} />
-        <Certifications onOpenAdmin={() => setIsAdminOpen(true)} />
-        <ResumeSection onOpenAdmin={() => setIsAdminOpen(true)} />
-        <Contact />
-      </main>
+        {/* Minimal Navigation Bar */}
+        <Navbar onOpenAdmin={() => setIsAdminOpen(true)} />
 
-      {/* Clean Footer (#0F172A) */}
-      <Footer />
+        {/* Main Single-page Content Sections: Home, Education, Skills, Projects, Experience, Contact */}
+        <main className="relative z-10">
+          <Hero />
+          <Education />
+          <TechnicalSkills />
+          <FeaturedProjects onOpenAdmin={() => setIsAdminOpen(true)} />
+          <Experience onOpenAdmin={() => setIsAdminOpen(true)} />
+          <Contact />
+        </main>
 
-      {/* Admin Panel Modal */}
-      <AdminDashboard isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
-    </div>
+        {/* Clean Minimal Footer */}
+        <Footer />
+
+        {/* Floating Back to Top Button */}
+        <FloatingBackToTop />
+
+        {/* Admin Panel Modal */}
+        <AdminDashboard isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
+      </div>
+    </CursorProvider>
   );
 };
 

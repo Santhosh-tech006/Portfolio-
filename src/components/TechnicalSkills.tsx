@@ -1,156 +1,83 @@
 import React from 'react';
-import { usePortfolio } from '../context/PortfolioContext';
-import {
-  Terminal,
-  Cpu,
-  Brain,
-  Layers,
-  Flame,
-  Sparkles,
-  GitBranch,
-  Github,
-  Cloud,
-  Code,
-  Activity,
-  Database,
-  Radio,
-  FileCode,
-  Palette,
-  Braces,
-  Atom,
-  Server,
-  Coffee,
-  CheckCircle,
-} from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
+import { Cpu } from 'lucide-react';
 
-interface SkillsProps {
-  onOpenAdmin: () => void;
+interface SkillItem {
+  name: string;
+  tag?: string;
 }
 
-export const TechnicalSkills: React.FC<SkillsProps> = ({ onOpenAdmin }) => {
-  const { skillCategories } = usePortfolio();
-
-  // Dynamic icon resolver
-  const getIcon = (name: string, iconName?: string) => {
-    switch (iconName || name) {
-      case 'Python':
-      case 'Terminal':
-        return <Terminal className="w-4 h-4 text-blue-600" />;
-      case 'Java':
-      case 'Coffee':
-        return <Coffee className="w-4 h-4 text-amber-600" />;
-      case 'SQL':
-      case 'MySQL':
-      case 'Database':
-        return <Database className="w-4 h-4 text-emerald-600" />;
-      case 'Machine Learning':
-      case 'Cpu':
-        return <Cpu className="w-4 h-4 text-blue-600" />;
-      case 'Deep Learning':
-      case 'Brain':
-        return <Brain className="w-4 h-4 text-indigo-600" />;
-      case 'TensorFlow':
-      case 'Layers':
-        return <Layers className="w-4 h-4 text-orange-600" />;
-      case 'PyTorch':
-      case 'Flame':
-        return <Flame className="w-4 h-4 text-red-600" />;
-      case 'Generative AI':
-      case 'Sparkles':
-        return <Sparkles className="w-4 h-4 text-purple-600" />;
-      case 'Git':
-      case 'GitBranch':
-        return <GitBranch className="w-4 h-4 text-rose-600" />;
-      case 'GitHub':
-        return <Github className="w-4 h-4 text-slate-800" />;
-      case 'Google Colab':
-      case 'Cloud':
-        return <Cloud className="w-4 h-4 text-amber-500" />;
-      case 'VS Code':
-      case 'Code':
-        return <Code className="w-4 h-4 text-sky-600" />;
-      case 'Grafana':
-      case 'Activity':
-        return <Activity className="w-4 h-4 text-orange-600" />;
-      case 'MQTT':
-      case 'Radio':
-        return <Radio className="w-4 h-4 text-teal-600" />;
-      case 'HTML':
-      case 'FileCode':
-        return <FileCode className="w-4 h-4 text-orange-600" />;
-      case 'CSS':
-      case 'Palette':
-        return <Palette className="w-4 h-4 text-blue-600" />;
-      case 'JavaScript':
-      case 'Braces':
-        return <Braces className="w-4 h-4 text-yellow-600" />;
-      case 'React':
-      case 'Atom':
-        return <Atom className="w-4 h-4 text-cyan-600" />;
-      case 'Node.js':
-      case 'Server':
-        return <Server className="w-4 h-4 text-emerald-600" />;
-      default:
-        return <Code className="w-4 h-4 text-blue-600" />;
-    }
-  };
+export const TechnicalSkills: React.FC = () => {
+  // Exactly the 22 required skills, directly displayed without category headers
+  const skills: SkillItem[] = [
+    { name: 'Python', tag: 'Core' },
+    { name: 'Java', tag: 'Core' },
+    { name: 'C', tag: 'Core' },
+    { name: 'SQL', tag: 'Data' },
+    { name: 'MySQL', tag: 'Database' },
+    { name: 'NumPy', tag: 'Computation' },
+    { name: 'Pandas', tag: 'Data' },
+    { name: 'Matplotlib', tag: 'Viz' },
+    { name: 'Seaborn', tag: 'Viz' },
+    { name: 'Scikit-learn', tag: 'ML' },
+    { name: 'TensorFlow', tag: 'Deep Learning' },
+    { name: 'Power BI', tag: 'Analytics' },
+    { name: 'Microsoft Excel', tag: 'Analytics' },
+    { name: 'Git', tag: 'VCS' },
+    { name: 'GitHub', tag: 'Collab' },
+    { name: 'Google Colab', tag: 'Platform' },
+    { name: 'Jupyter Notebook', tag: 'Environment' },
+    { name: 'VS Code', tag: 'Editor' },
+    { name: 'HTML', tag: 'Web' },
+    { name: 'CSS', tag: 'Styling' },
+    { name: 'JavaScript', tag: 'Web' },
+    { name: 'React.js', tag: 'Frontend' },
+  ];
 
   return (
-    <section id="skills" className="py-20 bg-slate-50 border-b border-slate-200">
+    <section id="skills" className="py-24 sm:py-32 bg-[#000000] border-t border-[#292929] relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="mb-12">
-          <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider font-mono">
-            Technical Stack
-          </span>
-          <h2 className="text-3xl font-bold text-slate-900 tracking-tight mt-1">
-            Core Technical Skills
-          </h2>
-          <div className="w-12 h-1 bg-blue-600 rounded-full mt-3" />
-          <p className="text-sm text-slate-600 mt-3 max-w-xl">
-            Practical competencies acquired through coursework, independent engineering, and technical development.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="max-w-2xl mb-16 sm:mb-20">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#111111] border border-[#292929] text-xs font-mono font-medium text-[#22D3EE] mb-4">
+              <Cpu className="w-3.5 h-3.5 text-[#3B82F6]" />
+              <span>TECHNICAL COMPETENCIES</span>
+            </div>
 
-        {/* 4 Categorized Clean Skill Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {skillCategories.map(category => (
-            <div
-              key={category.id}
-              className="bg-white p-6 sm:p-7 rounded-xl border border-slate-200 shadow-xs hover:border-slate-300 transition-colors"
-            >
-              <div className="mb-5 pb-3 border-b border-slate-100 flex items-center justify-between">
-                <div>
-                  <h3 className="text-base font-bold text-slate-900">
-                    {category.name}
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    {category.description}
-                  </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+              Core Technical Skills
+            </h2>
+
+            <p className="text-sm sm:text-base text-[#A0A0A0] mt-3 leading-relaxed">
+              Direct practical expertise across programming languages, machine learning frameworks, data science libraries, database systems, and development tools.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        {/* Minimalist 22 Skills Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+          {skills.map((skill, index) => (
+            <ScrollReveal key={skill.name} delay={0.02 * (index + 1)}>
+              <div
+                data-cursor={skill.name}
+                className="group relative p-4 rounded-xl bg-[#111111] border border-[#292929] hover:border-[#3B82F6] hover:bg-[#151515] hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between h-[84px] shadow-sm shadow-black/40"
+              >
+                {/* Top indicator dot */}
+                <div className="flex items-center justify-between">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#292929] group-hover:bg-[#22D3EE] transition-colors" />
+                  <span className="text-[10px] font-mono text-[#A0A0A0]/60 group-hover:text-[#3B82F6] transition-colors">
+                    {skill.tag}
+                  </span>
                 </div>
-                <span className="text-xs font-mono font-medium text-slate-400">
-                  {category.skills.length} skills
+
+                {/* Skill Name */}
+                <span className="text-sm font-semibold text-white group-hover:text-[#22D3EE] transition-colors tracking-tight truncate">
+                  {skill.name}
                 </span>
               </div>
-
-              {/* Clean skill badges with icons (no invented percentages!) */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {category.skills.map(skill => (
-                  <div
-                    key={skill.name}
-                    className="flex items-center gap-2.5 p-2.5 rounded-lg border border-slate-100 bg-slate-50/60 hover:bg-slate-50 hover:border-slate-200 transition-colors"
-                  >
-                    <div className="shrink-0">
-                      {getIcon(skill.name, skill.iconName)}
-                    </div>
-                    <span className="text-xs font-medium text-slate-800 truncate">
-                      {skill.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 

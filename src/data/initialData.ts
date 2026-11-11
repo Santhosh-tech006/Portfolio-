@@ -31,12 +31,13 @@ export const initialPersonalInfo: PersonalInfo = {
   ],
   statusBadge: 'Open to Placements & Opportunities',
   typingTitles: [
-    'AI & Data Science Student',
-    'Python & Machine Learning Developer',
+    'AI & ML Enthusiast',
+    'Python Developer',
     'Full-Stack Developer',
+    'Data Science Student',
   ],
   resumeUrl: '/resume-s-santhosh.pdf',
-  profilePhoto: '/src/assets/images/santhosh_profile_1793870349436.jpg',
+  profilePhoto: '/profile.jpg',
   subBlocks: {
     educationOverview:
       'Pursuing B.Tech in Artificial Intelligence & Data Science (2024–2028, 3rd Year) with an academic CGPA of 8.22 up to 4th semester at Velalar College of Engineering and Technology.',

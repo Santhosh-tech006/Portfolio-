@@ -93,12 +93,8 @@ const STORAGE_KEYS = {
 };
 
 export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Theme state
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    const saved = localStorage.getItem(STORAGE_KEYS.THEME);
-    if (saved === 'light' || saved === 'dark') return saved;
-    return 'dark'; // Dark theme default
-  });
+  // Theme state - strictly dark theme only
+  const theme: 'dark' = 'dark';
 
   // Active section for scroll spy
   const [activeSection, setActiveSection] = useState<string>('intro');
@@ -153,21 +149,16 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const isAdminLoggedIn = Boolean(adminUser);
   const isFirebaseLive = isFirebaseConfigured;
 
-  // Sync theme changes to <html> element
+  // Enforce dark theme on <html> element
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    }
-    localStorage.setItem(STORAGE_KEYS.THEME, theme);
-  }, [theme]);
+    root.classList.add('dark');
+    root.classList.remove('light');
+    localStorage.setItem(STORAGE_KEYS.THEME, 'dark');
+  }, []);
 
   const toggleTheme = useCallback(() => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    // Single dark theme - toggling is permanently disabled
   }, []);
 
   // Listen for real Firebase auth state if Firebase is available
